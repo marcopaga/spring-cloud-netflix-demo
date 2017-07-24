@@ -76,6 +76,7 @@
 	</dependencyManagement>
 
 	<build>
+		<finalName>frontend</finalName>
 		<plugins>
 			<plugin>
 				<groupId>org.springframework.boot</groupId>

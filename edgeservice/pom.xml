@@ -75,6 +75,7 @@
 	</dependencyManagement>
 
 	<build>
+		<finalName>edgeservice</finalName>
 		<plugins>
 			<plugin>
 				<groupId>org.springframework.boot</groupId>

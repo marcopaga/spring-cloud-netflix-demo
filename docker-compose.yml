@@ -1,0 +1,36 @@
+version: '3'
+
+services:
+  zipkin:
+    image: openzipkin/zipkin
+    ports:
+      - "9411:9411"
+  eureka:
+      build: eureka/.
+      ports:
+        - "8761:8761"
+  edgeservice:
+    build: edgeservice/.
+    ports:
+      - "8080:8080"
+    environment:
+      - EUREKA_HOST=eureka
+      - ZIPKIN_HOST=zipkin
+    depends_on:
+      - eureka
+  frontend:
+    build: frontend/.
+    environment:
+      - EUREKA_HOST=eureka
+      - ZIPKIN_HOST=zipkin
+    depends_on:
+      - eureka
+      - zipkin
+  backend:
+    build: backend/.
+    environment:
+      - EUREKA_HOST=eureka
+      - ZIPKIN_HOST=zipkin
+    depends_on:
+      - eureka
+      - zipkin

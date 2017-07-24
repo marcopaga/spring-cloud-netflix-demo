@@ -1,2 +1,15 @@
 server:
   port: 8080
+
+management:
+  security:
+    enabled: false
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://${eureka.host:localhost}:${eureka.port:8761}/eureka/
+
+spring:
+  zipkin:
+    base-url: http://${zipkin.host:localhost}:${zipkin.port:9411}/
