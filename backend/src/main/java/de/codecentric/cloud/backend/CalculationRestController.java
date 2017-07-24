@@ -37,7 +37,8 @@ public class CalculationRestController {
     }
 
     private void injectFailure() {
-        if(new Random().nextInt(100) > 95){
+        if(new Random().nextInt(100) > 80){
+            LOGGER.info("Creating some random exception in the backend processing.");
             throw new IllegalStateException("This error was automatically created for you to test this stack.");
         }
     }
