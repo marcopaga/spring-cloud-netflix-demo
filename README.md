@@ -12,3 +12,19 @@ Prepare the Spring Boot Apps with Maven.
 Start the applications with Docker Compose
 
 > docker-compose up -d
+
+# Using
+
+You need to give the whole stack some time to find the available services in eureka.
+
+## Sample call:
+
+http://localhost:8080/frontend/
+
+## Zipkin:
+
+http://localhost:9411/
+
+## Eureka:
+
+http://localhost:8761/
