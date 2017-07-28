@@ -5,10 +5,18 @@ services:
     image: openzipkin/zipkin
     ports:
       - "9411:9411"
+  configserver:
+    build: configserver/.
+    ports:
+      - "8888:8888"
   eureka:
-      build: eureka/.
-      ports:
-        - "8761:8761"
+    build: eureka/.
+    ports:
+      - "8761:8761"
+    environment:
+      - CONFIGSERVER_HOST=configserver
+    depends_on:
+      - configserver
   edgeservice:
     build: edgeservice/.
     ports:
@@ -16,21 +24,28 @@ services:
     environment:
       - EUREKA_HOST=eureka
       - ZIPKIN_HOST=zipkin
+      - CONFIGSERVER_HOST=configserver
     depends_on:
       - eureka
   frontend:
     build: frontend/.
+    ports:
+      - "8091:8091"
     environment:
       - EUREKA_HOST=eureka
       - ZIPKIN_HOST=zipkin
+      - CONFIGSERVER_HOST=configserver
     depends_on:
       - eureka
       - zipkin
   backend:
     build: backend/.
+    ports:
+      - "8090:8090"
     environment:
       - EUREKA_HOST=eureka
       - ZIPKIN_HOST=zipkin
+      - CONFIGSERVER_HOST=configserver
     depends_on:
       - eureka
       - zipkin

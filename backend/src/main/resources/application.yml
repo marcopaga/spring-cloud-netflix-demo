@@ -1,6 +1,15 @@
 server:
   port: 8090
 
+management:
+  security:
+    enabled: false
+
+backend:
+  processing:
+    time:
+      max: 1100
+
 eureka:
   client:
     serviceUrl:

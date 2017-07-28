@@ -1,0 +1,10 @@
+spring:
+  application:
+    name: configserver
+  cloud:
+    config:
+      server:
+        git:
+          uri: https://github.com/marcopaga/spring-cloud-netflix-demo-config/
+          search-paths: backend,frontend,edgeservice
+          clone-on-start: true

@@ -19,7 +19,7 @@ You need to give the whole stack some time to find the available services in eur
 
 ## Sample call:
 
-http://localhost:8080/frontend/
+http://localhost:8080/api/
 
 ## Zipkin:
 

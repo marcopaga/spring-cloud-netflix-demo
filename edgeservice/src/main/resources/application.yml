@@ -1,6 +1,12 @@
 server:
   port: 8080
 
+zuul:
+  ignored-services: '*'
+  routes:
+    frontend: /**
+  prefix: /api
+
 management:
   security:
     enabled: false

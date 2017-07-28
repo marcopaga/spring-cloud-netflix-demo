@@ -2,6 +2,7 @@ package de.codecentric.cloud.backend;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
@@ -10,6 +11,9 @@ import java.util.Random;
 
 @RestController
 public class CalculationRestController {
+
+    @Value("${backend.processing.time.max}")
+    private int maximumProcessingTime;
 
     private static final Logger LOGGER = LoggerFactory.getLogger(CalculationRestController.class);
 
@@ -28,7 +32,7 @@ public class CalculationRestController {
     }
 
     private void simulateLongProcessing() {
-        final int processingTime = new Random().nextInt(1100);
+        final int processingTime = new Random().nextInt(maximumProcessingTime);
         LOGGER.info("Processing will be delayed by {} ms.", processingTime);
         try {
             Thread.sleep(processingTime);

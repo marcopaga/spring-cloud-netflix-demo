@@ -1,3 +1,8 @@
 spring:
   application:
     name: edgeservice
+  cloud:
+    config:
+      uri: http://${configserver.host:localhost}:${configserver.port:8888}/
+  profiles:
+    active: default
