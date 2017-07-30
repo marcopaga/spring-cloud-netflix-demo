@@ -28,3 +28,7 @@ http://localhost:9411/
 ## Eureka:
 
 http://localhost:8761/
+
+## Config Server:
+
+http://localhost:8888/
