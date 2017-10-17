@@ -3,7 +3,7 @@ Spring cloud Demo Project with Zuul, Eureka, Ribbon, Sleuth &amp; Zipkin
 
 This is a simple Demo Project of Spring Cloud. Currently mostly focusing to the netflix part to investigate the resiliency capabilities.
 
-![System diagram][Spring_cloud.png]
+![System diagram](Spring_cloud.png)
 
 # Running
 
