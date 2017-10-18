@@ -21,11 +21,11 @@ This service is using zuul as the gateway to our microservices. All requests to 
 Here you can process the requests in multiple ways.
 Be advised that zuul is deprecated and will be replaced by [Spring cloud gateway](http://cloud.spring.io/spring-cloud-gateway/) which will be based on Project Reactor.
 
-## backend
+## [backend](backend/README.md)
 
 This is a simple demo application which can perform a simple calculation. The operation is available via a REST interface.
 
-## frontend
+## [frontend](frontend/README.md)
 
 This application will use the backend to perform a calculation. The backend will be called with a simple RestTemplate.
 The call is carried out with ribbon which uses eureka to discover the backend insances.
