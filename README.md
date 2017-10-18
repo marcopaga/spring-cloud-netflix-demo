@@ -6,7 +6,7 @@ This is a spring cloud Demo Project with Zuul, Eureka, Ribbon, Sleuth &amp; Zipk
 
 # Components
 
-## configserver
+## [configserver](configserver/README.md)
 
 The configuration server uses the [spring-cloud-netflix-demo-config](https://github.com/marcopaga/spring-cloud-netflix-demo-config/)-git repository.
 Now you can cahnge the configuration in the git repository and the properties will be forwarded to the running instances. You need to make the context refreshable via @RefreshScope.
@@ -54,16 +54,16 @@ You need to give the whole stack some time to find the available services in eur
 
 ## Sample call:
 
-http://localhost:8080/api/
+[localhost:8080/api/](http://localhost:8080/api/)
 
 ## Zipkin:
 
-http://localhost:9411/
+[localhost:9411](http://localhost:9411/)
 
 ## Eureka:
 
-http://localhost:8761/
+[localhost:8761](http://localhost:8761/)
 
 ## Config Server:
 
-http://localhost:8888/
+[localhost:8888](http://localhost:8888/)
