@@ -15,7 +15,7 @@ Now you can cahnge the configuration in the git repository and the properties wi
 
 This is the central service directory. The services will register here and are available to the other clients. The setup here will run a single eureka instance for development purposes. Make sure to run multiple instances when you deploy it to production.
 
-## edgeservice
+## [edgeservice](edgeservice/README.md)
 
 This service is using zuul as the gateway to our microservices. All requests to our application pass this central instance.
 Here you can process the requests in multiple ways.
