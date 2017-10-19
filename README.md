@@ -11,9 +11,9 @@ This is a spring cloud Demo Project with Zuul, Eureka, Ribbon, Sleuth &amp; Zipk
 The configuration server uses the [spring-cloud-netflix-demo-config](https://github.com/marcopaga/spring-cloud-netflix-demo-config/)-git repository.
 Now you can cahnge the configuration in the git repository and the properties will be forwarded to the running instances. You need to make the context refreshable via @RefreshScope.
 
-## eureka
+## [eureka](eureka/README.md)
 
-This is the central service directory. The services will register here and are available to the other clients. The setup here will run a single eureka instance for development purposes. Make sure to run multiple instances when you deploy it to production.
+This is the distributed service directory. All services will register with eureka.
 
 ## [edgeservice](edgeservice/README.md)
 

@@ -9,6 +9,17 @@ The following addresses are available:
 Both will return the sum of two numbers. With the first path you can explicitly define the numbers.
 The root URL will create two random numbers and sum these up.
 
+# Health Checks
+
+The backend has this property set:
+
+    eureka:
+      client:
+        healthcheck:
+          enabled: true
+
+This will advise eureka to check the `/health` Spring Boot Actuator endpoint for the service. As a consequence this instance will only be announced to other clients if the health Status is `UP`.
+
 # Processing
 
 The process simulates a processing time. The maximum number of millis can be configured with the spring property `backend.processing.time.max`. This property is currently propagated by the Spring cloud config server. 
