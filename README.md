@@ -67,3 +67,7 @@ You need to give the whole stack some time to find the available services in eur
 ## Config Server:
 
 [localhost:8888](http://localhost:8888/)
+
+# License
+
+[![License: CC BY 4.0](https://licensebuttons.net/l/by/4.0/80x15.png)](https://creativecommons.org/licenses/by/4.0/)
