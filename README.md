@@ -6,26 +6,30 @@ This is a spring cloud Demo Project with Zuul, Eureka, Ribbon, Sleuth &amp; Zipk
 
 # Components
 
-## [configserver](configserver/README.md)
+## Infrastructure
+
+### [configserver](configserver/README.md)
 
 The configuration server uses the [spring-cloud-netflix-demo-config](https://github.com/marcopaga/spring-cloud-netflix-demo-config/)-git repository.
 Now you can cahnge the configuration in the git repository and the properties will be forwarded to the running instances. You need to make the context refreshable via @RefreshScope.
 
-## [eureka](eureka/README.md)
+### [eureka](eureka/README.md)
 
 This is the distributed service directory. All services will register with eureka.
 
-## [edgeservice](edgeservice/README.md)
+### [edgeservice](edgeservice/README.md)
 
 This service is using zuul as the gateway to our microservices. All requests to our application pass this central instance.
 Here you can process the requests in multiple ways.
 Be advised that zuul is deprecated and will be replaced by [Spring cloud gateway](http://cloud.spring.io/spring-cloud-gateway/) which will be based on Project Reactor.
 
-## [backend](backend/README.md)
+## Business Services
+
+### [backend](backend/README.md)
 
 This is a simple demo application which can perform a simple calculation. The operation is available via a REST interface.
 
-## [frontend](frontend/README.md)
+### [frontend](frontend/README.md)
 
 This application will use the backend to perform a calculation. The backend will be called with a simple RestTemplate.
 The call is carried out with ribbon which uses eureka to discover the backend insances.
