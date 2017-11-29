@@ -4,10 +4,8 @@
 
 The following addresses are available:
 - http://localhost:8090/add/{first}/{second}/
-- http://localhost:8090/
 
-Both will return the sum of two numbers. With the first path you can explicitly define the numbers.
-The root URL will create two random numbers and sum these up.
+It will return the sum of two numbers. You can explicitly define the numbers.
 
 # Health Checks
 
