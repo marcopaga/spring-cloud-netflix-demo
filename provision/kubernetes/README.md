@@ -18,6 +18,8 @@ You can start minikube with `minikube start`.
 
 `minikube service cloud-deployment`
 
+`curl $(minikube service cloud-deployment --url)/add/23/42/`
+
 `kubectl delete deployment cloud-deployment`
 
 `kubectl delete service cloud-deployment`
