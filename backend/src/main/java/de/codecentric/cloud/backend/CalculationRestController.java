@@ -19,7 +19,8 @@ public class CalculationRestController {
 
     @GetMapping("/")
     public String index(){
-        return "Backend Application";
+        final String hostname = System.getenv("HOSTNAME");
+        return "Backend Application on "+hostname;
     }
 
     @GetMapping("/add/{first}/{second}/")
