@@ -9,23 +9,23 @@ You can start minikube with `minikube start`.
 ## Deployment
 
 ```
-kubectl create -f deployment.yml
+kubectl create -f cloud-backend-deployment.yml
 
-kubectl expose deployment cloud-deployment --type=NodePort
+kubectl create -f cloud-backend-service.yml
 
-kubectl describe deployment cloud-deployment
+kubectl describe deployment cloud-backend-deployment
 
 kubectl get pods -l app=demo
 
 kubectl logs -lapp=demo
 
-minikube service cloud-deployment
+minikube service cloud-backend
 
 curl $(minikube service cloud-deployment --url)/add/23/42/
 
-kubectl delete deployment cloud-deployment
+kubectl delete service cloud-backend
 
-kubectl delete service cloud-deployment
+kubectl delete deployment cloud-backend-deployment
 ```
 
 ## Kompose
