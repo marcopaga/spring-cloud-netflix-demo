@@ -9,26 +9,19 @@ You can start minikube with `minikube start`.
 ## Deployment
 
 ```
-kubectl create -f cloud-backend-deployment.yml
+kubectl create -f cloud-backend.yml
 
-kubectl create -f cloud-backend-service.yml
+kubectl describe deployment cloud-backend
 
-kubectl describe deployment cloud-backend-deployment
+kubectl get pods -l app=cloud
 
-kubectl get pods -l app=demo
+kubectl logs -lapp=cloud
 
-kubectl logs -lapp=demo
+minikube service cloud-backend-service
 
-minikube service cloud-backend
+curl $(minikube service cloud-backend-service --url)/add/23/42/
 
-curl $(minikube service cloud-deployment --url)/add/23/42/
-
-kubectl delete service cloud-backend
+kubectl delete service cloud-backend-service
 
 kubectl delete deployment cloud-backend-deployment
 ```
-
-## Kompose
-
-[http://kompose.io/](Kompose) is a simple tool to convert Docker compose file to the equivalent kubernetes descriptors.
-This seems to be nice for a first start but - as expected - needs manual tweaking.

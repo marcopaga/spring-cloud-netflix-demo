@@ -1,0 +1,173 @@
+apiVersion: apps/v1beta2 # for versions before 1.8.0 use apps/v1beta1
+kind: Deployment
+metadata:
+  name: cloud-eureka-deployment
+spec:
+  selector:
+    matchLabels:
+      app: cloud
+      component: eureka
+  replicas: 1
+  template: 
+    metadata:
+      labels:
+        app: cloud
+        component: eureka
+    spec:
+      containers:
+      - env:
+        - name: CONFIGSERVER_HOST
+          value: configserver-service
+        name: eureka
+        image: marcopaga/cloud-eureka
+        ports:
+        - containerPort: 8761
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: eureka-service
+spec:
+  type: LoadBalancer
+  selector:
+    app: cloud
+    component: eureka
+  ports:
+  - port: 8761
+    targetPort: 8761
+---
+apiVersion: apps/v1beta2 # for versions before 1.8.0 use apps/v1beta1
+kind: Deployment
+metadata:
+  name: cloud-configserver-deployment
+spec:
+  selector:
+    matchLabels:
+      app: cloud
+      component: configserver
+  replicas: 1
+  template: 
+    metadata:
+      labels:
+        app: cloud
+        component: configserver
+    spec:
+      containers:
+      - env:
+        - name: CONFIGSERVER_HOST
+          value: configserver-service
+        name: configserver
+        image: marcopaga/cloud-configserver
+        ports:
+        - containerPort: 8888
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: configserver-service
+spec:
+  type: LoadBalancer
+  selector:
+    app: cloud
+    component: configserver
+  ports:
+  - port: 8888
+    targetPort: 8888
+---
+apiVersion: apps/v1beta2 # for versions before 1.8.0 use apps/v1beta1
+kind: Deployment
+metadata:
+  name: cloud-edgeservice-deployment
+spec:
+  selector:
+    matchLabels:
+      app: cloud
+      component: edgeservice
+  replicas: 1
+  template: 
+    metadata:
+      labels:
+        app: cloud
+        component: edgeservice
+    spec:
+      containers:
+      - env:
+        - name: CONFIGSERVER_HOST
+          value: configserver-service
+        - name: EUREKA_HOST
+          value: eureka-service #eureka-service.default.svc.cluster.local
+        name: edgeservice
+        image: marcopaga/cloud-edgeservice
+        ports:
+        - containerPort: 8080
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: edgeservice-service
+spec:
+  type: LoadBalancer
+  selector:
+    app: cloud
+    component: edgeservice
+  ports:
+  - port: 8080
+    targetPort: 8080
+---
+apiVersion: apps/v1beta2 # for versions before 1.8.0 use apps/v1beta1
+kind: Deployment
+metadata:
+  name: cloud-frontend-deployment
+spec:
+  selector:
+    matchLabels:
+      app: cloud
+      component: frontend
+  replicas: 1
+  template: 
+    metadata:
+      labels:
+        app: cloud
+        component: frontend
+    spec:
+      containers:
+      - env:
+        - name: CONFIGSERVER_HOST
+          value: configserver-service
+        - name: EUREKA_HOST
+          value: eureka-service #eureka-service.default.svc.cluster.local
+        - name: ZIPKIN_HOST
+          value: zipkin-service
+        name: frontend
+        image: marcopaga/cloud-frontend
+        ports:
+        - containerPort: 8091
+---
+apiVersion: apps/v1beta2 # for versions before 1.8.0 use apps/v1beta1
+kind: Deployment
+metadata:
+  name: cloud-backend-deployment
+spec:
+  selector:
+    matchLabels:
+      app: cloud
+      component: backend
+  replicas: 1
+  template: 
+    metadata:
+      labels:
+        app: cloud
+        component: backend
+    spec:
+      containers:
+      - env:
+        - name: CONFIGSERVER_HOST
+          value: configserver-service
+        - name: EUREKA_HOST
+          value: eureka-service #eureka-service.default.svc.cluster.local
+        - name: ZIPKIN_HOST
+          value: zipkin-service
+        name: backend
+        image: marcopaga/cloud-backend
+        ports:
+        - containerPort: 8090
