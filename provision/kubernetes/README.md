@@ -19,7 +19,7 @@ kubectl describe deployment cloud-edgeservice-deployment
 
 kubectl get pods -l app=cloud
 
-kubectl logs -lapp=cloud
+kubectl logs -lapp=cloud,component=backend
 
 minikube service cloud-backend-service
 
@@ -29,7 +29,8 @@ curl $(minikube service backend-service --url)/add/23/42/
 
 http $(minikube service edgeservice-service --url)/frontend/
 
-kubectl delete service cloud-backend-service
-
-kubectl delete deployment cloud-backend-deployment
 ```
+
+## Clearing
+
+Clear the plate by using `kubectl delete pod,service,deployment -l app=cloud`
