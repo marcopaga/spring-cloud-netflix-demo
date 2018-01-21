@@ -58,7 +58,7 @@ You need to give the whole stack some time to find the available services in eur
 
 ## Sample call:
 
-[localhost:8080/api/](http://localhost:8080/api/)
+[localhost:8080/api/](http://localhost:8080/frontend/)
 
 ## Zipkin:
 

@@ -1,17 +1,13 @@
 server:
   port: 8080
 
-zuul:
-  ignored-services: '*'
-  routes:
-    frontend: /**
-  prefix: /api
-
 management:
   security:
     enabled: false
 
 eureka:
+  instance:
+    preferIpAddress: true
   client:
     serviceUrl:
       defaultZone: http://${eureka.host:localhost}:${eureka.port:8761}/eureka/

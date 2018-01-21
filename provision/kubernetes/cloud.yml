@@ -54,6 +54,8 @@ spec:
     spec:
       containers:
       - env:
+        - name: EUREKA_HOST
+          value: eureka-service
         - name: CONFIGSERVER_HOST
           value: configserver-service
         name: configserver
