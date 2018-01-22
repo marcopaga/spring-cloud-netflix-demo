@@ -25,9 +25,9 @@ minikube service cloud-backend-service
 
 minikube service eureka-service
 
-curl $(minikube service backend-service --url)/add/23/42/
-
 http $(minikube service edgeservice-service --url)/frontend/
+
+minikube service zipkin-service
 
 ```
 
