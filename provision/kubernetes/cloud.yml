@@ -2,6 +2,8 @@ apiVersion: apps/v1beta2 # for versions before 1.8.0 use apps/v1beta1
 kind: Deployment
 metadata:
   name: cloud-eureka-deployment
+  labels:
+    app: cloud
 spec:
   selector:
     matchLabels:
@@ -27,6 +29,8 @@ apiVersion: v1
 kind: Service
 metadata:
   name: eureka-service
+  labels:
+    app: cloud
 spec:
   type: LoadBalancer
   selector:
@@ -40,6 +44,8 @@ apiVersion: apps/v1beta2 # for versions before 1.8.0 use apps/v1beta1
 kind: Deployment
 metadata:
   name: cloud-configserver-deployment
+  labels:
+    app: cloud
 spec:
   selector:
     matchLabels:
@@ -67,6 +73,8 @@ apiVersion: v1
 kind: Service
 metadata:
   name: configserver-service
+  labels:
+    app: cloud
 spec:
   type: LoadBalancer
   selector:
@@ -80,6 +88,8 @@ apiVersion: apps/v1beta2 # for versions before 1.8.0 use apps/v1beta1
 kind: Deployment
 metadata:
   name: cloud-edgeservice-deployment
+  labels:
+    app: cloud
 spec:
   selector:
     matchLabels:
@@ -107,6 +117,8 @@ apiVersion: v1
 kind: Service
 metadata:
   name: edgeservice-service
+  labels:
+    app: cloud
 spec:
   type: LoadBalancer
   selector:
@@ -120,6 +132,8 @@ apiVersion: apps/v1beta2 # for versions before 1.8.0 use apps/v1beta1
 kind: Deployment
 metadata:
   name: cloud-frontend-deployment
+  labels:
+    app: cloud
 spec:
   selector:
     matchLabels:
@@ -149,6 +163,8 @@ apiVersion: apps/v1beta2 # for versions before 1.8.0 use apps/v1beta1
 kind: Deployment
 metadata:
   name: cloud-backend-deployment
+  labels:
+    app: cloud
 spec:
   selector:
     matchLabels:
@@ -178,6 +194,8 @@ apiVersion: apps/v1beta2 # for versions before 1.8.0 use apps/v1beta1
 kind: Deployment
 metadata:
   name: cloud-zipkin-deployment
+  labels:
+    app: cloud
 spec:
   selector:
     matchLabels:
@@ -203,6 +221,8 @@ apiVersion: v1
 kind: Service
 metadata:
   name: zipkin-service
+  labels:
+    app: cloud
 spec:
   type: LoadBalancer
   selector:
