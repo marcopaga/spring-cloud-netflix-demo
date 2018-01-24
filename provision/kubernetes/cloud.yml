@@ -46,7 +46,7 @@ metadata:
   labels:
     app: cloud
 spec:
-  type: LoadBalancer
+  type: NodePort
   selector:
     app: cloud
     component: eureka
@@ -104,7 +104,6 @@ metadata:
   labels:
     app: cloud
 spec:
-  type: LoadBalancer
   selector:
     app: cloud
     component: configserver
@@ -295,7 +294,7 @@ metadata:
   labels:
     app: cloud
 spec:
-  type: LoadBalancer
+  type: NodePort
   selector:
     app: cloud
     component: zipkin
