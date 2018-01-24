@@ -4,6 +4,10 @@ This is a spring cloud Demo Project with Zuul, Eureka, Ribbon, Sleuth &amp; Zipk
 
 ![System diagram](Spring_cloud.png)
 
+# Deployment
+
+Using [docker-compose|docker-compose.yml] or [kubernetes|provision/kubernetes].
+
 # Components
 
 ## Infrastructure
