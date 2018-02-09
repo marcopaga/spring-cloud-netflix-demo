@@ -22,22 +22,24 @@ spec:
           value: configserver-service
         name: eureka
         image: marcopaga/cloud-eureka
+        imagePullPolicy: Always
         ports:
         - containerPort: 8761
-        readinessProbe:
-          httpGet:
-            path: /health
-            port: 8761
-          initialDelaySeconds: 120
-          periodSeconds: 30
-          timeoutSeconds: 10
         livenessProbe:
           httpGet:
             path: /health
             port: 8761
-          initialDelaySeconds: 180
-          periodSeconds: 30
-          timeoutSeconds: 10
+          initialDelaySeconds: 300
+          periodSeconds: 60
+          timeoutSeconds: 2
+          failureThreshold: 2
+        resources:
+          requests:
+            memory: "128M"
+            cpu: "0.2"
+          limits:
+            memory: "256M"
+            cpu: "0.4"
 ---
 apiVersion: v1
 kind: Service
@@ -80,22 +82,24 @@ spec:
           value: configserver-service
         name: configserver
         image: marcopaga/cloud-configserver
+        imagePullPolicy: Always
         ports:
         - containerPort: 8888
-        readinessProbe:
-          httpGet:
-            path: /health
-            port: 8888
-          initialDelaySeconds: 120
-          periodSeconds: 30
-          timeoutSeconds: 10
         livenessProbe:
           httpGet:
             path: /health
             port: 8888
-          initialDelaySeconds: 180
-          periodSeconds: 30
-          timeoutSeconds: 10
+          initialDelaySeconds: 300
+          periodSeconds: 60
+          timeoutSeconds: 2
+          failureThreshold: 2
+        resources:
+          requests:
+            memory: "128M"
+            cpu: "0.1"
+          limits:
+            memory: "256M"
+            cpu: "0.2"
 ---
 apiVersion: v1
 kind: Service
@@ -137,22 +141,24 @@ spec:
           value: eureka-service #eureka-service.default.svc.cluster.local
         name: edgeservice
         image: marcopaga/cloud-edgeservice
+        imagePullPolicy: Always
         ports:
         - containerPort: 8080
-        readinessProbe:
-          httpGet:
-            path: /health
-            port: 8080
-          initialDelaySeconds: 120
-          periodSeconds: 30
-          timeoutSeconds: 10
         livenessProbe:
           httpGet:
             path: /health
             port: 8080
-          initialDelaySeconds: 180
-          periodSeconds: 30
-          timeoutSeconds: 10
+          initialDelaySeconds: 300
+          periodSeconds: 60
+          timeoutSeconds: 2
+          failureThreshold: 2
+        resources:
+          requests:
+            memory: "128M"
+            cpu: "0.2"
+          limits:
+            memory: "256M"
+            cpu: "0.5"
 ---
 apiVersion: v1
 kind: Service
@@ -197,22 +203,24 @@ spec:
           value: zipkin-service
         name: frontend
         image: marcopaga/cloud-frontend
+        imagePullPolicy: Always
         ports:
         - containerPort: 8091
-        readinessProbe:
-          httpGet:
-            path: /health
-            port: 8091
-          initialDelaySeconds: 120
-          periodSeconds: 30
-          timeoutSeconds: 10
         livenessProbe:
           httpGet:
             path: /health
             port: 8091
-          initialDelaySeconds: 180
-          periodSeconds: 30
-          timeoutSeconds: 10
+          initialDelaySeconds: 300
+          periodSeconds: 60
+          timeoutSeconds: 2
+          failureThreshold: 2
+        resources:
+          requests:
+            memory: "128M"
+            cpu: "0.2"
+          limits:
+            memory: "256M"
+            cpu: "0.5"
 ---
 apiVersion: apps/v1beta2 # for versions before 1.8.0 use apps/v1beta1
 kind: Deployment
@@ -242,22 +250,24 @@ spec:
           value: zipkin-service
         name: backend
         image: marcopaga/cloud-backend
+        imagePullPolicy: Always
         ports:
         - containerPort: 8090
-        readinessProbe:
-          httpGet:
-            path: /health
-            port: 8090
-          initialDelaySeconds: 180
-          periodSeconds: 30
-          timeoutSeconds: 10
         livenessProbe:
           httpGet:
             path: /health
             port: 8090
-          initialDelaySeconds: 240
-          periodSeconds: 30
-          timeoutSeconds: 10
+          initialDelaySeconds: 300
+          periodSeconds: 60
+          timeoutSeconds: 2
+          failureThreshold: 2
+        resources:
+          requests:
+            memory: "128m"
+            cpu: "0.2"
+          limits:
+            memory: "256M"
+            cpu: "0.5"
 
 ---
 apiVersion: apps/v1beta2 # for versions before 1.8.0 use apps/v1beta1
@@ -282,10 +292,16 @@ spec:
       - env:
         - name: EUREKA_HOST
           value: eureka-service #eureka-service.default.svc.cluster.local
+        - name: JAVA_OPTS
+          value: "-Xms256m -Xmx768m"
         name: zipkin
-        image: openzipkin/zipkin
+        image: openzipkin/zipkin:2.4.4
         ports:
         - containerPort: 9411
+        resources:
+          limits:
+            memory: "1G"
+            cpu: "0.5"
 ---
 apiVersion: v1
 kind: Service
@@ -294,7 +310,7 @@ metadata:
   labels:
     app: cloud
 spec:
-  type: NodePort
+  type: LoadBalancer
   selector:
     app: cloud
     component: zipkin

@@ -5,6 +5,8 @@ services:
     image: openzipkin/zipkin
     ports:
       - "9411:9411"
+    environment:
+      - JAVA_OPTS="-Xms256m -Xmx512m"
   configserver:
     build: configserver/.
     image: marcopaga/cloud-configserver

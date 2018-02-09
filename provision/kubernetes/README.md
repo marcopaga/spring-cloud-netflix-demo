@@ -8,7 +8,7 @@ You can start minikube with `minikube start` with the default of 2GB RAM and 2 C
 
 To set a custom amount of RAM and CPU:
 
-`minikube start --vm-driver virtualbox --memory 4096 --cpus 2`
+`minikube start --vm-driver virtualbox --memory 4096 --cpus 4`
 
 ## Google Cloud Platform Kubernetes Engine
 
