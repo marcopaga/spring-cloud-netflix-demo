@@ -2,6 +2,15 @@
 
 This is a spring cloud Demo Project with Zuul, Eureka, Ribbon, Sleuth &amp; Zipkin. 
 
+# Intro
+
+When you are migrating to a microservice environment you are getting a lot of beneftis and on the other side you need to tackle new challenges.
+
+- How can you find all service instances that are up and running?
+- What if a service won't respond? How do you handle load balancing between the available instances?
+- Services won't respond successfully or even throw errors. Can you provide a sane fallback for the user?
+- How to debug and analyze issues in your distributed production enivornment? Why was the call so slow? Where did the error happen? 
+
 ![System diagram](Spring_cloud.png)
 
 # Deployment
