@@ -9,12 +9,12 @@ services:
       - JAVA_OPTS="-Xms256m -Xmx512m"
   configserver:
     build: configserver/.
-    image: marcopaga/cloud-configserver
+    image: marcopaga/cloud-configserver:1
     ports:
       - "8888:8888"
   eureka:
     build: eureka/.
-    image: marcopaga/cloud-eureka
+    image: marcopaga/cloud-eureka:1
     ports:
       - "8761:8761"
     environment:
@@ -23,7 +23,7 @@ services:
       - configserver
   edgeservice:
     build: edgeservice/.
-    image: marcopaga/cloud-edgeservice
+    image: marcopaga/cloud-edgeservice:1
     ports:
       - "8080:8080"
     environment:
@@ -34,7 +34,7 @@ services:
       - eureka
   frontend:
     build: frontend/.
-    image: marcopaga/cloud-frontend
+    image: marcopaga/cloud-frontend:1
     ports:
       - "8091:8091"
     environment:
@@ -46,7 +46,7 @@ services:
       - zipkin
   backend:
     build: backend/.
-    image: marcopaga/cloud-backend
+    image: marcopaga/cloud-backend:1
     ports:
       - "8090:8090"
     environment:

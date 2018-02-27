@@ -21,7 +21,7 @@ spec:
         - name: CONFIGSERVER_HOST
           value: configserver-service
         name: eureka
-        image: marcopaga/cloud-eureka
+        image: marcopaga/cloud-eureka:1
         imagePullPolicy: Always
         ports:
         - containerPort: 8761
@@ -81,7 +81,7 @@ spec:
         - name: CONFIGSERVER_HOST
           value: configserver-service
         name: configserver
-        image: marcopaga/cloud-configserver
+        image: marcopaga/cloud-configserver:1
         imagePullPolicy: Always
         ports:
         - containerPort: 8888
@@ -140,7 +140,7 @@ spec:
         - name: EUREKA_HOST
           value: eureka-service #eureka-service.default.svc.cluster.local
         name: edgeservice
-        image: marcopaga/cloud-edgeservice
+        image: marcopaga/cloud-edgeservice:1
         imagePullPolicy: Always
         ports:
         - containerPort: 8080
@@ -202,7 +202,7 @@ spec:
         - name: ZIPKIN_HOST
           value: zipkin-service
         name: frontend
-        image: marcopaga/cloud-frontend
+        image: marcopaga/cloud-frontend:1
         imagePullPolicy: Always
         ports:
         - containerPort: 8091
@@ -249,7 +249,7 @@ spec:
         - name: ZIPKIN_HOST
           value: zipkin-service
         name: backend
-        image: marcopaga/cloud-backend
+        image: marcopaga/cloud-backend:1
         imagePullPolicy: Always
         ports:
         - containerPort: 8090
