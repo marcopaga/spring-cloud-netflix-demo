@@ -46,7 +46,7 @@ services:
       - zipkin
   backend:
     build: backend/.
-    image: marcopaga/cloud-backend:1
+    image: marcopaga/cloud-backend:2
     ports:
       - "8090:8090"
     environment:

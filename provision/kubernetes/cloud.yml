@@ -249,7 +249,7 @@ spec:
         - name: ZIPKIN_HOST
           value: zipkin-service
         name: backend
-        image: marcopaga/cloud-backend:1
+        image: marcopaga/cloud-backend:2
         imagePullPolicy: Always
         ports:
         - containerPort: 8090
