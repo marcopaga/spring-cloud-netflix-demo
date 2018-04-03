@@ -5,8 +5,6 @@ services:
     image: openzipkin/zipkin
     ports:
       - "9411:9411"
-    environment:
-      - JAVA_OPTS="-Xms256m -Xmx512m"
   configserver:
     build: configserver/.
     image: marcopaga/cloud-configserver:1
@@ -35,8 +33,6 @@ services:
   frontend:
     build: frontend/.
     image: marcopaga/cloud-frontend:1
-    ports:
-      - "8091:8091"
     environment:
       - EUREKA_HOST=eureka
       - ZIPKIN_HOST=zipkin
@@ -46,9 +42,7 @@ services:
       - zipkin
   backend:
     build: backend/.
-    image: marcopaga/cloud-backend:1
-    ports:
-      - "8090:8090"
+    image: marcopaga/cloud-backend:2
     environment:
       - EUREKA_HOST=eureka
       - ZIPKIN_HOST=zipkin
