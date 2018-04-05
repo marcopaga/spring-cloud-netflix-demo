@@ -8,7 +8,11 @@ You can start minikube with `minikube start` with the default of 2GB RAM and 2 C
 
 To set a custom amount of RAM and CPU:
 
-`minikube start --vm-driver virtualbox --memory 4096 --cpus 4`
+```
+minikube start --vm-driver virtualbox --memory 4096 --cpus 4
+minikube addons enable ingress
+```
+
 
 ## Google Cloud Platform Kubernetes Engine
 
@@ -51,6 +55,8 @@ kubectl logs -lapp=cloud,component=backend
 
 minikube service eureka-service
 
+https://192.168.99.100/frontend/
+
 http $(minikube service edgeservice-service --url)/frontend/ X-B3-Flags:1
 
 minikube service zipkin-service
@@ -59,7 +65,7 @@ minikube service zipkin-service
 
 ## Clearing
 
-Clear the plate by using `kubectl delete pod,service,deployment -l app=cloud`
+Clear the plate by using `kubectl delete pod,service,deployment,ingress -l app=cloud`
 
 
 ### Stop the cluster

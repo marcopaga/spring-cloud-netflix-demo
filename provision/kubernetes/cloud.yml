@@ -317,3 +317,20 @@ spec:
   ports:
   - port: 9411
     targetPort: 9411
+---
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: cloud-ingress
+  labels:
+    app: cloud
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /
+spec:
+  rules:
+  - http:
+      paths:
+      - path: /
+        backend:
+          serviceName: edgeservice-service
+          servicePort: 8080
