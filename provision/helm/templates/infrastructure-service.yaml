@@ -1,0 +1,23 @@
+{{- range .Values.infrastructure }}
+apiVersion: v1
+kind: Service
+metadata:
+  name: "{{ template "cloud.fullname" $ }}-{{ .name }}"
+  labels:
+    component: {{ .name }}
+    app: {{ template "cloud.name" $ }}
+    chart: {{ template "cloud.chart" $ }}
+    release: {{ $.Release.Name }}
+    heritage: {{ $.Release.Service }}
+spec:
+  type: NodePort
+  ports:
+    - port: {{ .port }}
+      targetPort: {{ .port }}
+      protocol: TCP
+  selector:
+    component: {{ .name }}
+    app: {{ template "cloud.name" $ }}
+    release: {{ $.Release.Name }}
+--- 
+{{- end }}

@@ -1,0 +1,21 @@
+{{- if .Values.zipkin.enabled -}}
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ template "cloud.fullname" $ }}-zipkin
+  labels:
+    component: zipkin
+    app: {{ template "cloud.name" . }}
+    chart: {{ template "cloud.chart" . }}
+    release: {{ .Release.Name }}
+    heritage: {{ .Release.Service }}
+spec:
+  type: LoadBalancer
+  selector:
+    component: zipkin
+    app: {{ template "cloud.name" . }}
+    release: {{ .Release.Name }}
+  ports:
+  - port: 9411
+    targetPort: 9411
+{{- end }}

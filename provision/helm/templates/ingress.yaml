@@ -1,0 +1,29 @@
+{{- if .Values.ingress.enabled -}}
+{{- $ingressPath := .Values.ingress.path -}}
+{{- $fullName := .Values.ingress.service -}}
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: "{{ template "cloud.fullname" $ }}-ingress"
+  labels:
+    app: {{ template "cloud.name" . }}
+    chart: {{ template "cloud.chart" . }}
+    release: {{ .Release.Name }}
+    heritage: {{ .Release.Service }}
+{{- with .Values.ingress.annotations }}
+  annotations:
+{{ toYaml . | indent 4 }}
+{{- end }}
+spec:
+  rules:
+  - http:
+      paths:
+      - path: /
+        backend:
+          serviceName: {{ template "cloud.fullname" $ }}-edgeservice
+          servicePort: 8080
+      - path: /eureka
+        backend:
+          serviceName: {{ template "cloud.fullname" $ }}-eureka
+          servicePort: 8761
+{{- end }}

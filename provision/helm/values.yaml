@@ -1,0 +1,79 @@
+# Default values for cloud.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+
+replicaCount: 1
+
+applications:  
+  backend:
+    name: backend
+    replicas: 1
+    port: 8090
+    image:
+      repository: marcopaga/cloud-backend
+      tag: 1
+      imagePullPolicy: Always
+  frontend:
+    name: frontend
+    image:
+      repository: marcopaga/cloud-frontend
+      tag: 1
+      imagePullPolicy: Always
+      
+infrastructure:
+  eureka:
+    name: eureka
+    port: 8761
+    image:
+      repository: marcopaga/cloud-eureka
+      tag: 1
+  edgeservice:
+    name: edgeservice
+    port: 8080
+    image:
+      repository: marcopaga/cloud-edgeservice
+      tag: 1
+  configserver:
+    name: configserver
+    port: 8888
+    image:
+      repository: marcopaga/cloud-configserver
+      tag: 1
+
+
+ingress:
+  enabled: true
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /
+  path: /
+  hosts:
+    - cloud.minikube.local
+  tls: []
+  #  - secretName: chart-example-tls
+  #    hosts:
+  #      - chart-example.local
+
+zipkin:
+  enabled: false
+  image:
+    repository: openzipkin/zipkin
+    tag: 2.4.4
+    imagePullPolicy: IfNotPresent
+
+resources: {}
+  # We usually recommend not to specify default resources and to leave this as a conscious
+  # choice for the user. This also increases chances charts run on environments with little
+  # resources, such as Minikube. If you do want to specify resources, uncomment the following
+  # lines, adjust them as necessary, and remove the curly braces after 'resources:'.
+  # limits:
+  #  cpu: 100m
+  #  memory: 128Mi
+  # requests:
+  #  cpu: 100m
+  #  memory: 128Mi
+
+nodeSelector: {}
+
+tolerations: []
+
+affinity: {}
