@@ -15,6 +15,9 @@ When you are migrating to a microservice environment you are getting a lot of be
 
 # Deployment
 
+You can start the application locally with [docker-compose](docker-compose.yml).
+For the deployment to kubernetes you can find two options. The first one is a [plain](provision/kubernetes) deployment of the manifests. The more advanced way is using [helm](provision/helm).
+
 Using [docker-compose](docker-compose.yml) or [kubernetes](provision/kubernetes).
 
 # Components
