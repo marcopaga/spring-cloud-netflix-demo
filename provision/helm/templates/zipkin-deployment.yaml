@@ -31,7 +31,7 @@ spec:
           value: "-Xms256m -Xmx768m"
         name: zipkin
         image: "{{ .Values.zipkin.image.repository }}:{{ .Values.zipkin.image.tag }}"
-        imagePullPolicy: {{ .Values.zipkin.image.pullPolicy }}
+        imagePullPolicy: {{ $.Values.zipkin.image.pullPolicy }}
         ports:
         - containerPort: 9411
         resources:

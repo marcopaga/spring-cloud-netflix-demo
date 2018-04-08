@@ -49,11 +49,6 @@ spec:
           timeoutSeconds: 2
           failureThreshold: 2
         resources:
-          requests:
-            memory: "128m"
-            cpu: "0.2"
-          limits:
-            memory: "256M"
-            cpu: "0.5"
+        {{ toYaml $.Values.resources | indent 10 }}
 ---
 {{- end }}

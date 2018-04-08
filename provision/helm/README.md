@@ -13,6 +13,7 @@ helm init
 ```
 helm install --name test .
 sleep 120 # or more ;)
+curl -k https://$(minikube ip)/routes
 http http://$(minikube ip)/frontend/
 ```
 
