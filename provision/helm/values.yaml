@@ -43,11 +43,13 @@ infrastructure:
 
 ingress:
   enabled: true
+  hosts:
+    frontend:
+      host: frontend.cloud.minikube.local
+    zipkin:
+      host: zipkin.cloud.minikube.local
   annotations:
     nginx.ingress.kubernetes.io/rewrite-target: /
-  path: /
-  hosts:
-    - cloud.minikube.local
   tls: []
   #  - secretName: chart-example-tls
   #    hosts:

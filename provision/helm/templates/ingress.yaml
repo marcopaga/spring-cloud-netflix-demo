@@ -1,6 +1,4 @@
 {{- if .Values.ingress.enabled -}}
-{{- $ingressPath := .Values.ingress.path -}}
-{{- $fullName := .Values.ingress.service -}}
 apiVersion: extensions/v1beta1
 kind: Ingress
 metadata:
@@ -16,14 +14,18 @@ metadata:
 {{- end }}
 spec:
   rules:
-  - http:
+  - host: {{ .Values.ingress.hosts.frontend.host }}
+    http:
       paths:
       - path: /
         backend:
           serviceName: {{ template "cloud.fullname" $ }}-edgeservice
           servicePort: 8080
-      - path: /eureka
+{{ if .Values.zipkin.enabled }}
+  - host: {{ .Values.ingress.hosts.zipkin.host }}
+      - path: /
         backend:
-          serviceName: {{ template "cloud.fullname" $ }}-eureka
-          servicePort: 8761
+          serviceName: {{ template "cloud.fullname" $ }}-zipkin
+          servicePort: 9411
+{{- end }}          
 {{- end }}

@@ -25,6 +25,7 @@ spec:
         chart: {{ template "cloud.chart" $ }}
         heritage: {{ $.Release.Service }}
     spec:
+      automountServiceAccountToken: false
       containers:
       - env:
         - name: CONFIGSERVER_HOST
@@ -48,6 +49,9 @@ spec:
           periodSeconds: 60
           timeoutSeconds: 2
           failureThreshold: 2
+        securityContext:
+          readOnlyRootFilesystem: true
+          runAsNonRoot: false
         resources:
         {{ toYaml $.Values.resources | indent 10 }}
 ---
