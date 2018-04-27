@@ -15,6 +15,7 @@ applications:
       imagePullPolicy: Always
   frontend:
     name: frontend
+    port: 8091
     image:
       repository: marcopaga/cloud-frontend
       tag: 1
@@ -40,7 +41,6 @@ infrastructure:
       repository: marcopaga/cloud-configserver
       tag: 1
 
-
 ingress:
   enabled: true
   hosts:
@@ -61,6 +61,7 @@ zipkin:
     repository: openzipkin/zipkin
     tag: 2.4.4
     imagePullPolicy: IfNotPresent
+
 
 resources: {}
   # We usually recommend not to specify default resources and to leave this as a conscious

@@ -27,5 +27,5 @@ spec:
         backend:
           serviceName: {{ template "cloud.fullname" $ }}-zipkin
           servicePort: 9411
-{{- end }}          
+{{ end }}          
 {{- end }}

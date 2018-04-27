@@ -38,4 +38,13 @@ spec:
           limits:
             memory: "1G"
             cpu: "0.5"
+        livenessProbe:
+          tcpSocket:
+            port: 9411
+          periodSeconds: 60
+          timeoutSeconds: 3
+        readinessProbe:
+          tcpSocket:
+            port: 9411
+          failureThreshold: 24
 {{- end }}

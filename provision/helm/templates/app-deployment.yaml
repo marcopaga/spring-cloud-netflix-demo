@@ -26,6 +26,10 @@ spec:
         heritage: {{ $.Release.Service }}
     spec:
       automountServiceAccountToken: false
+      initContainers:
+      - name: init-myservice
+        image: saltside/await
+        command: ['await', '-r', '300' ,'http://{{ template "cloud.fullname" $ }}-eureka:8761/health']
       containers:
       - env:
         - name: CONFIGSERVER_HOST
@@ -45,10 +49,14 @@ spec:
           httpGet:
             path: /health
             port: {{ .port | default "8080"}}
-          initialDelaySeconds: 300
           periodSeconds: 60
           timeoutSeconds: 2
           failureThreshold: 2
+        readinessProbe:
+          httpGet:
+            path: /health
+            port: {{ .port | default "8080"}}
+          failureThreshold: 12
         securityContext:
           readOnlyRootFilesystem: true
           runAsNonRoot: false
