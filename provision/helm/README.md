@@ -13,10 +13,19 @@ The hostnames are by default `frontend.cloud.minikube.local` and `zipkin.cloud.m
 
 # Initialise Helm
 
+## Without RBAC
 This command will install the tiller pod in your cluster.
 
 ```
 helm init 
+```
+
+## With RBAC
+
+```
+kubectl create serviceaccount tiller --namespace kube-system
+kubectl create -f tiller-clusterrolebinding.yaml
+helm init --service-account tiller --upgrade
 ```
 
 #  Install the app
@@ -36,8 +45,15 @@ If you make changes to the configuration you can easily apply it to your local c
 helm upgrade test . -i --wait
 ```
 
+# Create chaos
+
+```
+helm install --set labels='app=cloud',namespaces='!kube-system\,!production',rbac.create=true,dryRun=false stable/chaoskube --debug --name chaos
+```
+
 # Delete the app
 
 ```
 helm delete test --purge
+helm delete chaos --purge
 ```
