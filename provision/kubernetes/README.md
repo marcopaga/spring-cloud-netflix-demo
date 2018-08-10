@@ -9,7 +9,10 @@ You can start minikube with `minikube start` with the default of 2GB RAM and 2 C
 To set a custom amount of RAM and CPU:
 
 ```
-minikube start --vm-driver virtualbox --memory 4096 --cpus 4
+minikube config set memory 12288
+minikube config set cpus 4
+minikube config set disk-size 20GB
+minikube start
 minikube addons enable ingress
 ```
 
